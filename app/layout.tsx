@@ -1,3 +1,4 @@
+import Navbar from '@/components/organisms/Navbar';
 import '@/assets/styles/global.css';
 
 export const metadata = {
@@ -9,6 +10,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html>
       <body>
+        <Navbar />
         <main>{children}</main>
       </body>
     </html>
