@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Logo from '@/components/atoms/Logo/Logo';
 import MobileMenuButton from '@/components/atoms/MobileMenuButton/MobileMenuButton';
+import DesktopMenuItem from '@/components/atoms/DesktopMenuItem/DesktopMenuItem';
 
 import profileDefault from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa';
@@ -11,6 +12,12 @@ import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
+  const links = [
+    { text: 'Home', href: '/' },
+    { text: 'Properties', href: '/properties' },
+    { text: 'Add Property', href: '/properties/add', isLoggedInItem: true },
+  ];
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -32,32 +39,9 @@ const Navbar = () => {
           <div className="flex flex-1 items-center justify-center md:items-stretch md:justify-start">
             {/* <!-- Logo --> */}
             <Logo />
-            {/* <!-- Desktop Menu Hidden below md screens --> */}
-            <div className="hidden md:ml-6 md:block">
-              <div className="flex space-x-2">
-                <Link
-                  href="/"
-                  className={`${pathName === '/' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/properties"
-                  className={`${pathName === '/properties' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
-                >
-                  Properties
-                </Link>
 
-                {isLoggedIn && (
-                  <Link
-                    href="/properties/add"
-                    className={`${pathName === '/properties/add' ? 'bg-black' : ''} text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
-                  >
-                    Add Property
-                  </Link>
-                )}
-              </div>
-            </div>
+            {/* <!-- Desktop Menu Hidden below md screens --> */}
+            <DesktopMenuItem isLoggedIn={isLoggedIn} links={links} />
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
