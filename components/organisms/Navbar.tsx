@@ -1,12 +1,12 @@
 'use client';
-import Image from 'next/image';
+
 import Link from 'next/link';
 
 import Logo from '@/components/atoms/Logo/Logo';
 import MobileMenuButton from '@/components/atoms/MobileMenuButton/MobileMenuButton';
 import DesktopMenuItem from '@/components/atoms/DesktopMenuItem/DesktopMenuItem';
+import ProfileDropdownButton from '@/components/atoms/ProfileDropdownButton/ProfileDropdownButton';
 
-import profileDefault from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   const pathName = usePathname();
 
@@ -89,18 +89,10 @@ const Navbar = () => {
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
                 <div>
-                  <button
-                    type="button"
-                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                    id="user-menu-button"
-                    aria-expanded="false"
-                    aria-haspopup="true"
-                    onClick={() => setIsProfileMenuOpen((prev) => !prev)}
-                  >
-                    <span className="absolute -inset-1.5"></span>
-                    <span className="sr-only">Open user menu</span>
-                    <Image className="h-8 w-8 rounded-full" src={profileDefault} alt="" />
-                  </button>
+                  <ProfileDropdownButton
+                    isProfileMenuOpen={isProfileMenuOpen}
+                    setIsProfileMenuOpen={setIsProfileMenuOpen}
+                  />
                 </div>
 
                 {/* <!-- Profile dropdown --> */}
