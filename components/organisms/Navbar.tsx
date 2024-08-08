@@ -6,6 +6,7 @@ import Logo from '@/components/atoms/Logo/Logo';
 import MobileMenuButton from '@/components/atoms/MobileMenuButton/MobileMenuButton';
 import DesktopMenuItem from '@/components/atoms/DesktopMenuItem/DesktopMenuItem';
 import ProfileDropdownButton from '@/components/atoms/ProfileDropdownButton/ProfileDropdownButton';
+import ProfileDropdown from '@/components/atoms/ProfileDropdown/ProfileDropdown';
 
 import { FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
@@ -16,6 +17,12 @@ const Navbar = () => {
     { text: 'Home', href: '/' },
     { text: 'Properties', href: '/properties' },
     { text: 'Add Property', href: '/properties/add', isLoggedInItem: true },
+  ];
+
+  const profileDropdownItems = [
+    { href: '/profile', label: 'Your Profile', id: 'user-menu-item-0' },
+    { href: '/properties/saved', label: 'Saved Properties', id: 'user-menu-item-1' },
+    { label: 'Sign Out', id: 'user-menu-item-2', isButton: true },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -96,43 +103,7 @@ const Navbar = () => {
                 </div>
 
                 {/* <!-- Profile dropdown --> */}
-                {isProfileMenuOpen && (
-                  <div
-                    id="user-menu"
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu"
-                    aria-orientation="vertical"
-                    aria-labelledby="user-menu-button"
-                    tabIndex={-1}
-                  >
-                    <Link
-                      href="/profile"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="user-menu-item-0"
-                    >
-                      Your Profile
-                    </Link>
-                    <Link
-                      href="/properties/saved"
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="user-menu-item-2"
-                    >
-                      Saved Properties
-                    </Link>
-                    <button
-                      className="block px-4 py-2 text-sm text-gray-700"
-                      role="menuitem"
-                      tabIndex={-1}
-                      id="user-menu-item-2"
-                    >
-                      Sign Out
-                    </button>
-                  </div>
-                )}
+                {isProfileMenuOpen && <ProfileDropdown items={profileDropdownItems} />}
               </div>
             </div>
           )}
