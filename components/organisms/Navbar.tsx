@@ -7,8 +7,8 @@ import MobileMenuButton from '@/components/atoms/MobileMenuButton/MobileMenuButt
 import DesktopMenuItem from '@/components/atoms/DesktopMenuItem/DesktopMenuItem';
 import ProfileDropdownButton from '@/components/atoms/ProfileDropdownButton/ProfileDropdownButton';
 import ProfileDropdown from '@/components/atoms/ProfileDropdown/ProfileDropdown';
+import LoginOrRegisterButton from '@/components/atoms/LoginOrRegisterButton/LoginOrRegisterButton';
 
-import { FaGoogle } from 'react-icons/fa';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
@@ -27,7 +27,7 @@ const Navbar = () => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const pathName = usePathname();
 
@@ -55,10 +55,7 @@ const Navbar = () => {
           {!isLoggedIn && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
-                  <FaGoogle className="text-white mr-2" />
-                  <span>Login or Register</span>
-                </button>
+                <LoginOrRegisterButton />
               </div>
             </div>
           )}
@@ -136,12 +133,7 @@ const Navbar = () => {
               </Link>
             )}
 
-            {!isLoggedIn && (
-              <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-5">
-                <FaGoogle className="text-white mr-2" />
-                <span>Login or Register</span>
-              </button>
-            )}
+            {!isLoggedIn && <LoginOrRegisterButton isForMobileMenu />}
           </div>
         </div>
       )}
