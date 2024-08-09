@@ -4,7 +4,8 @@ interface LinkItem {
   isLoggedInItem?: boolean;
 }
 
-export interface DesktopMenuItemProps {
+export interface NavbarMenuItemProps {
   isLoggedIn: boolean;
   links: LinkItem[];
+  isForMobileMenu?: boolean;
 }

@@ -1,10 +1,8 @@
 'use client';
 
-import Link from 'next/link';
-
 import Logo from '@/components/atoms/Logo/Logo';
 import MobileMenuButton from '@/components/atoms/MobileMenuButton/MobileMenuButton';
-import DesktopMenuItem from '@/components/atoms/DesktopMenuItem/DesktopMenuItem';
+import NavbarMenuItem from '@/components/molecules/NavbarMenuItem/NavbarMenuItem';
 import ProfileDropdownButton from '@/components/atoms/ProfileDropdownButton/ProfileDropdownButton';
 import ProfileDropdown from '@/components/atoms/ProfileDropdown/ProfileDropdown';
 import LoginOrRegisterButton from '@/components/atoms/LoginOrRegisterButton/LoginOrRegisterButton';
@@ -28,7 +26,7 @@ const Navbar = () => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const pathName = usePathname();
 
@@ -49,7 +47,7 @@ const Navbar = () => {
             <Logo />
 
             {/* <!-- Desktop Menu Hidden below md screens --> */}
-            <DesktopMenuItem isLoggedIn={isLoggedIn} links={links} />
+            <NavbarMenuItem isLoggedIn={isLoggedIn} links={links} />
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
@@ -84,35 +82,7 @@ const Navbar = () => {
       </div>
 
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-      {isMobileMenuOpen && (
-        <div id="mobile-menu">
-          <div className="md:hidden space-y-1 px-2 pb-3 pt-2">
-            <Link
-              href="/"
-              className={`${pathName === '/' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
-            >
-              Home
-            </Link>
-            <Link
-              href="/properties"
-              className={`${pathName === '/properties' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
-            >
-              Properties
-            </Link>
-
-            {isLoggedIn && (
-              <Link
-                href="/properties/add"
-                className={`${pathName === '/properties/add' ? 'bg-black' : ''} text-white block rounded-md px-3 py-2 text-base font-medium`}
-              >
-                Add Property
-              </Link>
-            )}
-
-            {!isLoggedIn && <LoginOrRegisterButton isForMobileMenu />}
-          </div>
-        </div>
-      )}
+      {isMobileMenuOpen && <NavbarMenuItem isLoggedIn={isLoggedIn} links={links} isForMobileMenu />}
     </nav>
   );
 };

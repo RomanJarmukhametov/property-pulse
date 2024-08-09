@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, afterEach, Mock } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
-import DesktopMenuItem from './DesktopMenuItem';
+import NavbarMenuItem from './NavbarMenuItem';
 import { usePathname } from 'next/navigation';
 import '@testing-library/jest-dom';
 
@@ -14,7 +14,7 @@ const links = [
   { href: '/profile', text: 'Profile', isLoggedInItem: true },
 ];
 
-describe('DesktopMenuItem component', () => {
+describe('NavbarMenuItem component', () => {
   afterEach(() => {
     cleanup();
   });
@@ -22,7 +22,7 @@ describe('DesktopMenuItem component', () => {
   it('renders the correct links when the user is not logged in', () => {
     (usePathname as Mock).mockReturnValue('/home');
 
-    render(<DesktopMenuItem isLoggedIn={false} links={links} />);
+    render(<NavbarMenuItem isLoggedIn={false} links={links} />);
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.queryByText('Profile')).not.toBeInTheDocument();
   });
@@ -30,14 +30,14 @@ describe('DesktopMenuItem component', () => {
   it('renders the correct links when the user is logged in', () => {
     (usePathname as Mock).mockReturnValue('/home');
 
-    render(<DesktopMenuItem isLoggedIn={true} links={links} />);
+    render(<NavbarMenuItem isLoggedIn={true} links={links} />);
     expect(screen.getByText('Home')).toBeInTheDocument();
     expect(screen.getByText('Profile')).toBeInTheDocument();
   });
 
   it('applies the correct class based on the current pathname', () => {
     (usePathname as Mock).mockReturnValue('/home');
-    render(<DesktopMenuItem isLoggedIn={true} links={links} />);
+    render(<NavbarMenuItem isLoggedIn={true} links={links} />);
 
     const homeLink = screen.getByText('Home');
     const profileLink = screen.getByText('Profile');
@@ -48,7 +48,7 @@ describe('DesktopMenuItem component', () => {
 
   it('applies hover and other classes correctly', () => {
     (usePathname as Mock).mockReturnValue('/home');
-    render(<DesktopMenuItem isLoggedIn={true} links={links} />);
+    render(<NavbarMenuItem isLoggedIn={true} links={links} />);
 
     const homeLink = screen.getByText('Home');
     const profileLink = screen.getByText('Profile');
