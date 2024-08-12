@@ -9,7 +9,6 @@ import LoginOrRegisterButton from '@/components/atoms/LoginOrRegisterButton/Logi
 import NotificationsButton from '@/components/atoms/NotificationsButton/NotificationsButton';
 
 import { useState } from 'react';
-import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const links = [
@@ -27,8 +26,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
-
-  const pathName = usePathname();
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">

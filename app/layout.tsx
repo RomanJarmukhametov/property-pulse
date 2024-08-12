@@ -1,4 +1,4 @@
-import Navbar from '@/components/organisms/Navbar';
+import Navbar from '@/components/organisms/Navbar/Navbar';
 import '@/assets/styles/global.css';
 
 export const metadata = {
