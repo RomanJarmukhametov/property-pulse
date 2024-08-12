@@ -1,4 +1,5 @@
 import Navbar from '@/components/organisms/Navbar/Navbar';
+import Footer from '@/components/organisms/Footer/Footer';
 import '@/assets/styles/global.css';
 
 export const metadata = {
@@ -12,6 +13,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <body>
         <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
