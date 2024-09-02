@@ -6,11 +6,11 @@ import { PropertyProps } from './PropertyProps';
 const PropertyCard = ({ property }: { property: PropertyProps }) => {
   const getRateDisplay = () => {
     const { rates } = property;
-    if (rates.monthly) {
+    if (rates?.monthly) {
       return `$${rates.monthly.toLocaleString()}/mo`;
-    } else if (rates.weekly) {
+    } else if (rates?.weekly) {
       return `$${rates.weekly.toLocaleString()}/wk`;
-    } else if (rates.nightly) {
+    } else if (rates?.nightly) {
       return `$${rates.nightly.toLocaleString()}/night`;
     }
   };
@@ -18,7 +18,7 @@ const PropertyCard = ({ property }: { property: PropertyProps }) => {
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/properties/${property.images[0]}`}
+        src={`/images/properties/${property.images?.[0] ?? ''}`}
         alt=""
         className="w-full h-auto rounded-t-xl"
         width="0"
@@ -62,7 +62,7 @@ const PropertyCard = ({ property }: { property: PropertyProps }) => {
             <FaMapMarker className="text-orange-700 mt-1" />
             <span className="text-orange-700">
               {' '}
-              {property.location.city} {property.location.state}{' '}
+              {property.location?.city} {property.location?.state}{' '}
             </span>
           </div>
           <Link
