@@ -3,7 +3,6 @@ import Link from 'next/link';
 import connectDB from '@/config/database';
 import Property from '@/models/Property';
 import { PropertyProps } from '@/components/organisms/PropertyCard/PropertyProps';
-import { P } from 'vitest/dist/chunks/environment.0M5R1SX_.js';
 
 const HomeProperties = async () => {
   await connectDB();
